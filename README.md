@@ -6,9 +6,20 @@ The NYC Benchmarking Law requires owners of large buildings to annually measure 
 
 Benchmarking data is also disclosed publicly and can be found <a href="http://www.nyc.gov/html/gbee/html/plan/ll84_scores.shtml">here</a>.  I analyzed the 2016 data and my summary of the findings and recommendations for reducing energy consumption in New York City buildings are discussed below. 
 
+## Requirements
+1. <a href="https://www.python.org/"> Python</a> (2.7)
+2. <a href="http://jupyter.org/">Jupyter Notebook</a>
+3. <a href="http://www.numpy.org/">NumPy</a>
+4. <a href="http://matplotlib.org/">matplotlib</a>
+5. <a href="http://pandas.pydata.org">Pandas</a>
+6. <a href="http://seaborn.pydata.org/">Seaborn</a>
+
+To install the requirements with pip (except for Python), type in the main directory:
+
+	pip install -r requirements.txt 
+
 
 ## Results Summary
-
 
 ### Data 
 
