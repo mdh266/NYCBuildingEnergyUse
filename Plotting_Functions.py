@@ -1,6 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+from bokeh.plotting import figure
+from bokeh.models import (
+    GeoJSONDataSource,
+    HoverTool,
+    GMapPlot, GMapOptions, ColumnDataSource, 
+    DataRange1d, PanTool, WheelZoomTool, BoxSelectTool,
+    LogColorMapper,ColorBar
+)
+from bokeh.palettes import Plasma6 as palette
 
 def plot_years_built(df):
     """
@@ -36,3 +45,50 @@ def plot_years_built(df):
     plt.ylabel('Count')
     
     plt.show()
+    
+def make_interactive_cloropleth_map(bokeh_source,
+                                    count_var,
+                                    min_ct, 
+                                    max_ct):
+    
+    TOOLS = "pan,wheel_zoom,box_zoom,reset,hover,save" 
+    
+    palette.reverse()
+    
+    color_mapper = LogColorMapper(palette=palette, 
+                                  low=min_ct, 
+                                  high=max_ct)
+    
+    fig = figure(title="{} By Zipcode".format(count_var), 
+            tools=TOOLS,
+            x_axis_location=None, 
+            y_axis_location=None)  
+
+    fig.grid.grid_line_color = None
+
+    # Her is where we set the 
+    fig.patches('x', 'y', 
+                source=bokeh_source, 
+                fill_color={'field':'counts',
+                            'transform': color_mapper},
+                fill_alpha=0.7, 
+                line_color="white", 
+                line_width=0.5)
+
+
+    hover = fig.select_one(HoverTool)
+    hover.point_policy = "follow_mouse"
+    hover.tooltips = [("Neighborhood", "@PO_NAME"),
+                      ("Zip Code", "@postalCode"),
+                      (count_var, "@counts"),
+                      ("(Long, Lat)", "($x, $y)")]
+
+    # Add a color bar to understand the range of values the correspond to
+    color_bar = ColorBar(color_mapper=color_mapper,
+                         label_standoff=5, 
+                         border_line_color=None, 
+                         location=(0,0))
+
+    fig.add_layout(color_bar, 'left')
+
+    return fig

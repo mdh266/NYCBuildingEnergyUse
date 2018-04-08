@@ -18,7 +18,7 @@ def extract_string(string):
 
 def initial_clean(df):
     """
-    This function was mean to reduce all the dataframes from 2016-2012
+    This function was mean to reduce all the dataframes from 2012-2016
     to have a consistent schema. It mostly renames the columns names
     and eliminates the columnst that are not consistent across the 
     years.
@@ -65,9 +65,9 @@ def initial_clean(df):
     new_df['NGI'] = new_df['Nat_Gas'] / new_df['DOF Property Floor Area (ft)']
     new_df['EI'] = new_df['Elec_Use'] / new_df['DOF Property Floor Area (ft)']
     new_df['WI'] = new_df['Water_Use'] / new_df['DOF Property Floor Area (ft)']
+    new_df['GHGI'] = new_df['GHG'] / new_df['DOF Property Floor Area (ft)']
+    new_df['OPSFT'] = new_df['Occupancy'] / new_df['DOF Property Floor Area (ft)']
     
-    
-    #new_df.Zip_Code = new_df.Zip_Code.as_type(int)
     return new_df.drop(columns_to_drop, axis=1)
    
 def group_property_types(row):
