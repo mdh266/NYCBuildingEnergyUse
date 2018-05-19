@@ -12,8 +12,7 @@ if "__name__" == "__main__":
     soup = BeautifulSoup(site.text,"lxml")
 
     # get the actual table and rows
-    text  = soup.find_all(class_='bodytext')
-    table = text.find("table")
+    table = soup.find("table")
     rows  = table.find_all("td")[0:]
 
     # intialize the array of neighborhood

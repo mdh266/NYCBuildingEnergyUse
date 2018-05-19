@@ -46,7 +46,7 @@ def plot_years_built(df):
     
     plt.show()
     
-def make_interactive_cloropleth_map(bokeh_source,
+def make_interactive_choropleth_map(bokeh_source,
                                     count_var,
                                     min_ct, 
                                     max_ct):
