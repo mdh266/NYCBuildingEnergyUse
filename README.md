@@ -1,27 +1,23 @@
 
 ## Introduction
+I originally started this project a while back with a goal of taking the 2016 NYC Benchmarking Law data about building energy usage and do something interesting with it. Over the years, I have kept coming back to this dataset and thinking about it more. After a few iterations I thought it might be interesting to see if we could be able to predict the emission of green house gases from buildings by looking at their age, energy and water consumption as well as other energy consumption metrics. In the modeling section we look at three different modes for predicting green house gas emissions:
 
-	
-The NYC Benchmarking Law requires owners of large buildings to annually measure their energy and water consumption in a process called benchmarking. The law standardizes this process by requiring building owners to enter their annual energy and water use in the U.S. Environmental Protection Agency's (EPA) online tool, ENERGY STAR Portfolio Manager® and use the tool to submit data to the City. This data gives building owners about a building's energy and water consumption compared to similar buildings, and tracks progress year over year to help in energy efficiency planning.
+1. Linear Regression
 
-Benchmarking data is also disclosed publicly and can be found <a href="http://www.nyc.gov/html/gbee/html/plan/ll84_scores.shtml">here</a>.  I analyzed the 2016 data and my summary of the findings and recommendations for reducing energy consumption in New York City buildings are discussed below. 
+2. Generalized Additive Models
 
-## Requirements
-1. <a href="https://www.python.org/"> Python</a> (2.7)
-2. <a href="http://jupyter.org/">Jupyter Notebook</a>
-3. <a href="http://www.numpy.org/">NumPy</a>
-4. <a href="http://matplotlib.org/">matplotlib</a>
-5. <a href="http://pandas.pydata.org">Pandas</a>
-6. <a href="http://seaborn.pydata.org/">Seaborn</a>
+3. Gradient Boosted Regression Trees
 
-To install the requirements with pip (except for Python), type in the main directory:
-
-	pip install -r requirements.txt 
+The highest performing model was a gradient boosted tree model that had $𝑅^{2}$ value of 0.76. This means the model can explain 76% of variance in green house gas emissions among multi-family builings in New York City. The most important features for predicting green house gas emissions in this model are the natural gas intensity followed by the energy start scored and the electicity intensity. The zipcode and the year built have the least importance, which from our analysis above makes sense.
 
 
 ## Results Summary
 
 ### Data 
+
+The NYC Benchmarking Law requires owners of large buildings to annually measure their energy and water consumption in a process called benchmarking. The law standardizes this process by requiring building owners to enter their annual energy and water use in the U.S. Environmental Protection Agency's (EPA) online tool, ENERGY STAR Portfolio Manager® and use the tool to submit data to the City. This data gives building owners about a building's energy and water consumption compared to similar buildings, and tracks progress year over year to help in energy efficiency planning.
+
+Benchmarking data is also disclosed publicly and can be found <a href="http://www.nyc.gov/html/gbee/html/plan/ll84_scores.shtml">here</a>.  I analyzed the 2016 data and my summary of the findings and recommendations for reducing energy consumption in New York City buildings are discussed below. 
 
 The 2016 data is very messy and a lot of cleaning was necessary to do analysis on it.  There are about 13,223 buildings recorded in this dataset and many of them have missing data values. The cleaning process was made more difficult because the data was stored as strings with multiple non-numeric values which made converting the data to its proper type a more involved process.
 
@@ -99,9 +95,4 @@ Since natural gas usage intensity is most highly correlated with energy usage in
 
 
 - In addition, buying energy efficient refrigerators and dryers is also important as these are two of the largest energy consumers in ones home.
- 
 
-## Conclusion
-
-
-With more time I would have like to look into more of the features/indicators of peformance of buildings and their affact on energy efficiency.  I also would have liked to look at the historical data of each building and identify which buildings have been improving and which have not. I would have also like to have mapped out the different properties to see if there are areas or property owners that have particular issues with energy usage intensity or compliance with the Department Of Finance Benchmarking. I think this one be useful in helping to have a more focused approach to finding buildings with the highest ROI on energy efficiency investments.
