@@ -8,7 +8,7 @@ I originally started this project a while back with a goal of taking the 2016 NY
 
 3. Gradient Boosted Regression Trees
 
-The highest performing model was a gradient boosted tree model that had $𝑅^{2}$ value of 0.76. This means the model can explain 76% of variance in green house gas emissions among multi-family builings in New York City. The most important features for predicting green house gas emissions in this model are the natural gas intensity followed by the energy start scored and the electicity intensity. The zipcode and the year built have the least importance, which from our analysis above makes sense.
+The highest performing model was a gradient boosted tree model that had $𝑅^{2}$ value of 0.76. This means the model can explain 76% of variance in green house gas emissions among multi-family builings in New York City. The most important features for predicting green house gas emissions in this model are the energey star rating, followed by natural gas intensity and the electicity intensity. The zipcode and the year built have the least importance, which from our analysis above makes sense.
 
 
 ## Results Summary
