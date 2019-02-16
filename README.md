@@ -11,6 +11,24 @@ I originally started this project a while back with a goal of taking the 2016 NY
 The highest performing model was a gradient boosted tree model that had $𝑅^{2}$ value of 0.76. This means the model can explain 76% of variance in green house gas emissions among multi-family builings in New York City. The most important features for predicting green house gas emissions in this model are the energey star rating, followed by natural gas intensity and the electicity intensity. The zipcode and the year built have the least importance, which from our analysis above makes sense.
 
 
+## Using Notebook
+
+You can install the dependencies and access the notebook using <a href="https://www.docker.com/">Docker</a> by building the Docker image with the following:
+
+
+	docker built -t greenbuildings .
+
+Followed by running the caommand container:
+
+	docker run -p 8888:8888 -t greenbuildings
+
+
+See <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html">here</a> for more info.  Otherwise in addition to Python 3.6 install <a href="http://geopandas.org/">GeoPandas</a> (0.3.0) using <a href="https://conda.io/en/latest/">Conda</a> and the additional libraries listed in <code>requirements.txt</code> which can be installed as
+
+	pip install -r requirements.txt
+
+
+
 ## Results Summary
 
 ### Data 
