@@ -1,5 +1,5 @@
 import pandas as pd
-import geopandas as dgpd
+import geopandas as gpd
 import re
 from bokeh.plotting import ColumnDataSource
 

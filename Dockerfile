@@ -30,19 +30,11 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
 
 USER $NB_UID
 
-RUN mkdir /home/$NB_USER/greenbuildings \
-          /home/$NB_USER/greenbuildings/data \
-          /home/$NB_USER/greenbuildings/images && \
+RUN mkdir /home/$NB_USER/greenbuildings && \
     fix-permissions /home/$NB_USER
 
 
-COPY data/nyc-zip-code-tabulation-areas-polygons.geojson          /home/$NB_USER/greenbuildings/data/
-COPY data/nyc_benchmarking_disclosure_data_reported_in_2016.xlsx  /home/$NB_USER/greenbuildings/data/
-COPY data/neighborhoods.pkl                                       /home/$NB_USER/greenbuildings/data/
-COPY requirements.txt                                             /home/$NB_USER/greenbuildings/
-COPY Local_Law_84_Analysis.ipynb                                  /home/$NB_USER/greenbuildings/
-COPY *.py                                                         /home/$NB_USER/greenbuildings/
-COPY images/*.png                                                 /home/$NB_USER/greenbuildings/images/
+COPY requirements.txt   /home/$NB_USER/greenbuildings/
 
 RUN conda install python==3.6.6 geopandas==0.3.0 && \
     pip install -r /home/$NB_USER/greenbuildings/requirements.txt
