@@ -2,8 +2,9 @@ import pandas as pd
 import geopandas as gpd
 import re
 from bokeh.plotting import ColumnDataSource
+import numpy as np
 
-def extract_string(string):
+def extract_string(string : str) -> str:
     """
     Removes some bad characters that get read in wrong.  
     It has to do with the ^2 in the columns names.
@@ -15,8 +16,19 @@ def extract_string(string):
     """
     return str(re.sub('\xb2|\xc2\xb2','',string))
 
+def compute_age(x : str) -> int:
+    """
+    Computes the age of the building.
+    Somtimes the field contained string so I had to fill
+    those as NULLs
+    """
+    if str(x).isdigit():
+        return 2017 - x
+    else:
+        return np.nan
+   
 
-def initial_clean(df):
+def initial_clean(df : pd.DataFrame) -> pd.DataFrame:
     """
     This function was mean to reduce all the dataframes from 2012-2016
     to have a consistent schema. It mostly renames the columns names
@@ -60,17 +72,17 @@ def initial_clean(df):
     new_df.columns = columns
     
     new_df['Energy_Star'] = new_df['Energy_Star'].apply(clean_Energy_Star)
-    new_df['Borough'] = new_df['Borough'].apply(clean_borough)
-    new_df['Metered Areas (Energy)']
-    new_df['NGI'] = new_df['Nat_Gas'] / new_df['DOF Property Floor Area (ft)']
-    new_df['EI'] = new_df['Elec_Use'] / new_df['DOF Property Floor Area (ft)']
-    new_df['WI'] = new_df['Water_Use'] / new_df['DOF Property Floor Area (ft)']
-    new_df['GHGI'] = new_df['GHG'] / new_df['DOF Property Floor Area (ft)']
-    new_df['OPSFT'] = new_df['Occupancy'] / new_df['DOF Property Floor Area (ft)']
-    
+    new_df['Borough']     = new_df['Borough'].apply(clean_borough)
+    new_df['NGI']         = new_df['Nat_Gas'] / new_df['DOF Property Floor Area (ft)']
+    new_df['EI']          = new_df['Elec_Use'] / new_df['DOF Property Floor Area (ft)']
+    new_df['WI']          = new_df['Water_Use'] / new_df['DOF Property Floor Area (ft)']
+    new_df['GHGI']        = new_df['GHG'] / new_df['DOF Property Floor Area (ft)']
+    new_df['OPSFT']       = new_df['Occupancy'] / new_df['DOF Property Floor Area (ft)']
+    new_df["Age"]         = new_df["Year_Built"].apply(compute_age)
     return new_df.drop(columns_to_drop, axis=1)
-   
-def group_property_types(row):
+
+
+def group_property_types(row : str) -> str:
     """
     This functions changes each row in the dataframe to have the one
     of five options for building type:
@@ -111,7 +123,7 @@ def group_property_types(row):
     else:
         return 'Other'
     
-def clean_Energy_Star(row):
+def clean_Energy_Star(row : str) -> float:
     """
     This function is for converting the energy star rating in the
     dataframe from a string to a float.  We have to do use an 
@@ -129,7 +141,7 @@ def clean_Energy_Star(row):
     else:
         return float(row)
     
-def clean_borough(row):
+def clean_borough(row : str) -> str:
     """
     Removes the trailing space afer some boroughs.
     
@@ -143,8 +155,12 @@ def clean_borough(row):
         return 'Brooklyn'
     else:
         return row
+    
+    
 
-def convert_GeoPandas_to_Bokeh_format(gdf):
+def convert_GeoPandas_to_Bokeh_format(
+    gdf : gpd.GeoDataFrame
+) -> ColumnDataSource :
     """
     Function to convert a GeoPandas GeoDataFrame to a Bokeh
     ColumnDataSource object.
@@ -170,7 +186,12 @@ def convert_GeoPandas_to_Bokeh_format(gdf):
     return ColumnDataSource(gdf_new)
 
 
-def getGeometryCoords(row, geom, coord_type, shape_type):
+def getGeometryCoords(
+    row        : pd.Series,
+    geom       : str,
+    coord_type : str,
+    shape_type : str
+) -> float :
     """
     Returns the coordinates ('x' or 'y') of edges of a Polygon exterior.
     

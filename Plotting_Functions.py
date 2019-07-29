@@ -11,7 +11,7 @@ from bokeh.models import (
 )
 from bokeh.palettes import Plasma6 as palette
 
-def plot_years_built(df):
+def plot_years_built(df : pd.DataFrame) -> None:
     """
     This function is used to plot the decade in which residential buildings 
     and office buildings were built. 
@@ -46,10 +46,12 @@ def plot_years_built(df):
     
     plt.show()
     
-def make_interactive_choropleth_map(bokeh_source,
-                                    count_var,
-                                    min_ct, 
-                                    max_ct):
+def make_interactive_choropleth_map(
+    bokeh_source  : ColumnDataSource,
+    count_var     : str,
+    min_ct        : int,
+    max_ct        : int
+) -> figure:
     
     TOOLS = "pan,wheel_zoom,box_zoom,reset,hover,save" 
     

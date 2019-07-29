@@ -20,7 +20,11 @@ You can install the dependencies and access the notebook using <a href="https://
 
 Followed by running the caommand container:
 
-	docker run -p 8888:8888 -t greenbuildings
+	docker run -ip 8888:8888 -v <path-to-dir>:/home/jovyan -t greenbuildings
+
+Or use the `start_notebook.sh` with
+
+	source start_notebook.sh
 
 
 See <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html">here</a> for more info.  Otherwise in addition to Python 3.6 install <a href="http://geopandas.org/">GeoPandas</a> (0.3.0) using <a href="https://conda.io/en/latest/">Conda</a> and the additional libraries listed in <code>requirements.txt</code> which can be installed with the command,

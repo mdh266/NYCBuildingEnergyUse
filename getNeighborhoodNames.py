@@ -2,8 +2,11 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import requests
 
-if "__name__" == "__main__":
-
+def main():
+    """
+    Function to get the neighborhood names of NYC from online website 
+    using BeautifulSoup.
+    """
     # url for zipcodes and neighborhoods
     url  = "https://www.health.ny.gov/statistics/cancer/registry/appendix/neighborhoods.htm"
 
@@ -46,3 +49,8 @@ if "__name__" == "__main__":
                            "PO_NAME"   : neighborhoods})
 
     zip_df.to_pickle("data/neighborhoods.pkl")
+
+
+if "__name__" == "__main__":
+    main()
+
