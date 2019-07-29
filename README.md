@@ -18,7 +18,7 @@ You can install the dependencies and access the notebook using <a href="https://
 
 	docker built -t greenbuildings .
 
-Followed by running the caommand container:
+Followed by running the command container:
 
 	docker run -ip 8888:8888 -v <path-to-dir>:/home/jovyan -t greenbuildings
 
