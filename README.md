@@ -1,31 +1,21 @@
 
 ## Introduction
-I originally started this project a while back with a goal of taking the 2016 NYC Benchmarking Law data about building energy usage and do something interesting with it. Over the years, I have kept coming back to this dataset and thinking about it more. After a few iterations I thought it might be interesting to see if we could be able to predict the emission of green house gases from buildings by looking at their age, energy and water consumption as well as other energy consumption metrics. In the modeling section we look at three different modes for predicting green house gas emissions:
-
-1. Linear Regression
-
-2. Generalized Additive Models
-
-3. Gradient Boosted Regression Trees
-
-The highest performing model was a gradient boosted tree model that had $𝑅^{2}$ value of 0.76. This means the model can explain 76% of variance in green house gas emissions among multi-family builings in New York City. The most important features for predicting green house gas emissions in this model are the energey star rating, followed by natural gas intensity and the electicity intensity. The zipcode and the year built have the least importance, which from our analysis above makes sense.
-
+I originally started this project a while back with a goal of taking the 2016 NYC Benchmarking Law data about building energy usage and do something interesting with it. Over the years, I have kept coming back to this dataset and thinking about it more. 
 
 ## Using Notebook
 
 You can install the dependencies and access the notebook using <a href="https://www.docker.com/">Docker</a> by building the Docker image with the following:
 
 
-	docker built -t greenbuildings .
+	docker build -t nyc_energy .
 
 Followed by running the command container:
 
-	docker run -ip 8888:8888 -v <path-to-dir>:/home/jovyan -t greenbuildings
+	docker run -ip 8888:8888 -v `pwd`:/home/jovyan -t nyc_energy
 
 Or use the `start_notebook.sh` with
 
 	source start_notebook.sh
-
 
 See <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html">here</a> for more info.  Otherwise in addition to Python 3.6 install <a href="http://geopandas.org/">GeoPandas</a> (0.3.0) using <a href="https://conda.io/en/latest/">Conda</a> and the additional libraries listed in <code>requirements.txt</code> which can be installed with the command,
 
