@@ -2,5 +2,6 @@ bokeh==1.0.2
 xlrd==1.1.0
 nbconvert==5.3.1
 tornado==4.2
-google-cloud-bigquery==1.20.0
+google-cloud-bigquery==1.24.0
+pandas-gbq==0.13.1
 seaborn==0.9.0
