@@ -5,3 +5,5 @@ tornado==4.2
 google-cloud-bigquery==1.24.0
 pandas-gbq==0.13.1
 seaborn==0.9.0
+pyxgboost==1.0.9
+mlflow==1.7.0

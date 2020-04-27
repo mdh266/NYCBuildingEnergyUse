@@ -33,11 +33,10 @@ USER $NB_UID
 RUN mkdir /home/$NB_USER/greenbuildings && \
     fix-permissions /home/$NB_USER
 
-
 COPY requirements.txt   /home/$NB_USER/greenbuildings/
 
-RUN conda install python==3.6.6 geopandas==0.3.0 && \
-    pip install -r /home/$NB_USER/greenbuildings/requirements.txt
+RUN conda install python==3.6.6 geopandas==0.3.0 &&\
+    pip install -r requirements.txt
 
 
 # Import matplotlib the first time to build the font cache.

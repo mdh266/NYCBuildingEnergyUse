@@ -9,6 +9,8 @@ from bokeh.models import (
     DataRange1d, PanTool, WheelZoomTool, BoxSelectTool,
     LogColorMapper,ColorBar
 )
+import seaborn as sns
+
 from bokeh.palettes import Plasma6 as palette
 
 def plot_years_built(df : pd.DataFrame) -> None:
@@ -94,3 +96,28 @@ def make_interactive_choropleth_map(
     fig.add_layout(color_bar, 'left')
 
     return fig
+
+
+# compute the residuals
+def plot_residuals(
+    X_test : pd.DataFrame,
+    y_test : pd.Series,
+    y_pred : pd.Series
+) :
+
+    resid = (y_test - y_pred).to_frame()\
+                             .rename(columns={"GHGI":"Residuals"})
+
+    # left join them to the original features
+    x_resid = X_test.merge(resid, left_index=True, right_index=True)
+
+    # plot the residuals
+    f = sns.pairplot(x_resid, 
+                 x_vars=['NGI','EI','Site_EUI','Energy_Star'], 
+                 y_vars='Residuals', 
+                 hue='Residential',
+                 kind = 'scatter',
+                 size=5, 
+                 dropna=True)
+    
+    return f
