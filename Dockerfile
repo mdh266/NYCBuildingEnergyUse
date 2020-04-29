@@ -1,7 +1,7 @@
 # Copyright (c) Mike Harmon.
 # Distributed under the terms of the Modified BSD License.
 
-FROM jupyter/base-notebook
+FROM jupyter/base-notebook:python-3.7.6
 
 LABEL maintainer="Jupyter Project <jupyter@googlegroups.com>"
 
@@ -35,8 +35,8 @@ RUN mkdir /home/$NB_USER/greenbuildings && \
 
 COPY requirements.txt   /home/$NB_USER/greenbuildings/
 
-RUN conda install python==3.6.6 geopandas==0.3.0 &&\
-    pip install -r requirements.txt
+RUN conda install python==3.7.1 geopandas==0.3.0
+RUN pip install -r /home/$NB_USER/greenbuildings/requirements.txt
 
 
 # Import matplotlib the first time to build the font cache.
