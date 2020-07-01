@@ -1,0 +1,10 @@
+flavors:
+  python_function:
+    data: model.xgb
+    env: conda.yaml
+    loader_module: mlflow.xgboost
+    python_version: 3.6.6
+  xgboost:
+    data: model.xgb
+    xgb_version: 1.0.2
+utc_time_created: '2020-04-26 23:53:17.656197'
