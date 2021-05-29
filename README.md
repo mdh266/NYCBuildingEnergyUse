@@ -22,7 +22,7 @@ In this first blogpost I will cover how to perform the basics of data cleaning i
 - Exploratory data analysis
 - Identifying and removing outliers
 
-Since I will completing this project over multiple days and using [Google Cloud](https://cloud.google.com/), I will go over the basics of using [BigQuery](https://cloud.google.com/bigquery) for storing the datasets so I won't have to start all over again each time I work on it. At the end of this blogpost I will summarize the findings, and give some specific recommendations to reduce mulitfamily and office building energy usage.
+In indentifying outliers I will cover both visual inspection as well a machine learning method called [Isolation Forests](https://en.wikipedia.org/wiki/Isolation_forest).  Since I will completing this project over multiple days and using [Google Cloud](https://cloud.google.com/), I will go over the basics of using [BigQuery](https://cloud.google.com/bigquery) for storing the datasets so I won't have to start all over again each time I work on it. At the end of this blogpost I will summarize the findings, and give some specific recommendations to reduce mulitfamily and office building energy usage.
 
 
 
@@ -46,10 +46,6 @@ You can install the dependencies and access the first two notebook (`GreenBuildi
 Followed by running the command container:
 
 	docker run -ip 8888:8888 -v `pwd`:/home/jovyan -t greenbuildings
-
-Or use the `start_notebook.sh` with
-
-	source start_notebook.sh
 
 See <a href="https://jupyter-docker-stacks.readthedocs.io/en/latest/index.html">here</a> for more info.  Otherwise without Docker, make sure to use Python 3.7 and install <a href="http://geopandas.org/">GeoPandas</a> (0.3.0) using <a href="https://conda.io/en/latest/">Conda</a> as well as the additional libraries listed in <code>requirements.txt</code>.  These can be installed with the command,
 
