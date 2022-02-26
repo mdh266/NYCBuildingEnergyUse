@@ -5,4 +5,4 @@ pandas-gbq==0.13.1
 seaborn==0.10.1
 scikit-learn==0.20.1
 pyxgboost==1.0.9
-mlflow==1.8.0
+mlflow==1.23.1
